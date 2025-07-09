@@ -1,0 +1,27 @@
+.table {
+    border: 1px solid rgb(35, 35, 35);
+
+    border-collapse: collapse;
+    background-color: rgb(252, 252, 252);
+
+}
+
+.tableHeader {
+    background-color: white;
+}
+
+.tableHeader  th {
+    padding: 0.5rem;
+}
+
+.tableHeader th:first-of-type {
+   width: 750px;
+}
+
+.table td {
+    padding: 1rem;
+}
+
+.tableFooter {
+    font-weight: 700;
+}

@@ -1,0 +1,83 @@
+.productContainer {
+    width: 100%;
+}
+
+.productContainer > h2 {
+    font-size: 2rem;
+}
+
+.productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.productImage {
+    width: 200px;
+    height: 200px;
+}
+
+.productImage > img {  
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px;
+
+    background-color: white;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.productTitle {
+    font-size: 1.25rem;
+}
+
+.productPrice {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.addButton {
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 0px;
+
+    font-weight: 700;
+}
+
+.incrementButton, .decrementButton {
+    padding: 15px;
+    border: 0px;
+}
+
+.incrementButton {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.decrementButton {
+    border-radius: 10px 0px 0px 10px;
+}
+
+.countInput {
+    border: 0px solid black;
+    border-radius: 0px;
+    padding: 15px;
+    width: 80px;
+    text-align: center;
+}
