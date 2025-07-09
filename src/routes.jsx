@@ -1,5 +1,5 @@
 import App from "./components/App";
-import Products from "./components/Products";
+import ProductPage from "./components/ProductPage";
 import ErrorPage from "./components/ErrorPage";
 import Checkout from "./components/Checkout"
 
@@ -11,7 +11,7 @@ const routes = [
     children: [
       {
         path: "products",
-        element: <Products />,
+        element: <ProductPage />,
       },
       {
         path: "checkout",

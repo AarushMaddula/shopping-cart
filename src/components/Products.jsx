@@ -1,52 +1,54 @@
 import { useEffect, useState } from "react"
 
+import Styles from "../styles/products.module.css"
 import ProductCard from "./ProductCard"
 
-import Styles from "../styles/products.module.css"
-import Structure from "../styles/structure.module.css"
+const useProductData = () => {
 
-function Products() {
-
-  const [ products, setProducts ] = useState([])
-  const [ loading, setLoading ] = useState(true)
+  const [productData, setProductData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
-      .then(response => response.json())
-      .then(data => {
-        setLoading(false)
-        setProducts(data)
-      });
-  }, [])
+      .then(response => {
+        if (response.status >= 400) {
+          throw new Error("Server Error!")
+        }
+
+        return response.json();
+      })
+      .then(data => setProductData(data))
+      .catch(error => setError(error))
+      .finally(() => setLoading(false))
+    }, [])
+    
+  return { productData, loading, error }
+}
+
+function Products() {
+
+  const { productData, loading, error } = useProductData();
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>A network error was encountered</p>
 
   return (
-    <>
-      <main className={Structure.body}>
-
-        <div className={Styles.productContainer}>
-          <h2>Products</h2>
-
-          <div className={Styles.productList}>
-            {
-              loading 
-              ? "Loading"
-              : products.map(product => {
-                  return (
-                    <ProductCard 
-                      key={product.id}
-                      id={product.id}
-                      title={product.title}
-                      price={product.price}
-                      image={product.image}
-                    />
-                  )
-                })
-            }
-          </div>
-        </div>
-
-      </main>
-    </>
+    <div className={Styles.productList}>
+      {
+        productData.map(product => {
+          return (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              image={product.image}
+            />
+          )
+        })
+      }
+    </div>
   );
 };
 
